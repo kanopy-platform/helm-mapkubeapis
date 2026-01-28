@@ -46,7 +46,7 @@ $ ./linux-amd64/helm plugin install https://github.com/helm/helm-mapkubeapis
 Map release deprecated or removed Kubernetes APIs in-place:
 
 ```console
-$ helm mapkubeapis [flags] RELEASE 
+$ helm mapkubeapis [flags] RELEASE
 
 Flags:
       --dry-run                  simulate a command
@@ -60,7 +60,7 @@ Flags:
 Example output:
 
 ```console
-$ helm mapkubeapis cluster-role-example --namespace test-cluster-role-example         
+$ helm mapkubeapis cluster-role-example --namespace test-cluster-role-example
 2022/02/07 18:48:49 Release 'cluster-role-example' will be checked for deprecated or removed Kubernetes APIs and will be updated if necessary to supported API versions.
 2022/02/07 18:48:49 Get release 'cluster-role-example' latest version.
 2022/02/07 18:48:49 Check release 'cluster-role-example' for deprecated or removed APIs...
