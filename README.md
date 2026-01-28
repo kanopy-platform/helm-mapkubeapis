@@ -2,8 +2,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Go Report Card](https://goreportcard.com/badge/github.com/helm/helm-mapkubeapis)](https://goreportcard.com/report/github.com/helm/helm-mapkubeapis)
-[![CircleCI](https://circleci.com/gh/helm/helm-mapkubeapis/tree/master.svg?style=svg)](https://circleci.com/gh/helm/helm-mapkubeapis/tree/master)
 [![Release](https://img.shields.io/github/release/helm/helm-mapkubeapis.svg?style=flat-square)](https://github.com/helm/helm-mapkubeapis/releases/latest)
+[![Build Status](https://github.com/helm/helm-mapkubeapis/workflows/build-test/badge.svg)](https://github.com/helm/helm-mapkubeapis/actions?workflow=build-test)
 
 `mapkubeapis` is a Helm v3 plugin which updates in-place Helm release metadata that contains deprecated or removed Kubernetes APIs to a new instance with supported Kubernetes APIs, or entirely removes references to resources that use APIs that were removed and do not have a successor. Jump to [background to the issue](#background-to-the-issue) for more details on the problem space that the plugin solves.
 
@@ -25,8 +25,8 @@ Based on the version in `plugin.yaml`, release binary will be downloaded from Gi
 
 ```console
 $ helm plugin install https://github.com/kanopy-platform/helm-mapkubeapis
-Downloading and installing helm-mapkubeapis v0.4.1-0.1.2 ...
-https://github.com/kanopy-platform/helm-mapkubeapis/releases/download/v0.4.1-0.1.2/helm-mapkubeapis_v0.4.1-0.1.2_darwin_amd64.tar.gz
+Downloading and installing helm-mapkubeapis v0.1.0 ...
+https://github.com/kanopy-platform/helm-mapkubeapis/releases/download/v0.1.0/helm-mapkubeapis_v0.1.0_darwin_amd64.tar.gz
 Installed plugin: mapkubeapis
 ```
 
@@ -46,7 +46,7 @@ $ ./linux-amd64/helm plugin install https://github.com/helm/helm-mapkubeapis
 Map release deprecated or removed Kubernetes APIs in-place:
 
 ```console
-$ helm mapkubeapis [flags] RELEASE 
+$ helm mapkubeapis [flags] RELEASE
 
 Flags:
       --dry-run                  simulate a command
@@ -60,7 +60,7 @@ Flags:
 Example output:
 
 ```console
-$ helm mapkubeapis cluster-role-example --namespace test-cluster-role-example         
+$ helm mapkubeapis cluster-role-example --namespace test-cluster-role-example
 2022/02/07 18:48:49 Release 'cluster-role-example' will be checked for deprecated or removed Kubernetes APIs and will be updated if necessary to supported API versions.
 2022/02/07 18:48:49 Get release 'cluster-role-example' latest version.
 2022/02/07 18:48:49 Check release 'cluster-role-example' for deprecated or removed APIs...

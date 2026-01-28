@@ -41,7 +41,7 @@ var (
 	settings *EnvSettings
 )
 
-func newMapCmd(out io.Writer, args []string) *cobra.Command {
+func newMapCmd(_ io.Writer) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:          "mapkubeapis [flags] RELEASE",
 		Short:        "Map release deprecated or removed Kubernetes APIs in-place",
@@ -49,7 +49,10 @@ func newMapCmd(out io.Writer, args []string) *cobra.Command {
 		SilenceUsage: true,
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				cmd.Help()
+				err := cmd.Help()
+				if err != nil {
+					return err
+				}
 				os.Exit(1)
 			} else if len(args) > 1 {
 				return errors.New("only one release name may be passed at a time")
@@ -61,7 +64,8 @@ func newMapCmd(out io.Writer, args []string) *cobra.Command {
 	}
 
 	flags := cmd.PersistentFlags()
-	flags.Parse(args)
+	flags.ParseErrorsWhitelist.UnknownFlags = true
+
 	settings = new(EnvSettings)
 
 	// Get the default mapping file
@@ -88,7 +92,7 @@ func newMapCmd(out io.Writer, args []string) *cobra.Command {
 	return cmd
 }
 
-func runMap(cmd *cobra.Command, args []string) error {
+func runMap(_ *cobra.Command, args []string) error {
 	releaseName := args[0]
 	mapOptions := MapOptions{
 		DryRun:           settings.DryRun,
